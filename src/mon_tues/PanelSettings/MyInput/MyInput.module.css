@@ -1,7 +1,19 @@
 .Input {
-
+    outline: none;
+    width: 100px;
+    height: 25px;
+    margin: auto 0;
+    border: 3px solid #59E1E4;
+    border-radius: 8px;
+    padding: 2px 2px 2px 5px;
+    font-weight: 700;
+    text-align: center;
 }
 
+
+.InputValid {
+
+}
 
 .InputError {
     background-color: red;

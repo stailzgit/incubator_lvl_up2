@@ -5,14 +5,14 @@ type MyInputProps = {
   value: number
   setValue: (value: number) => void
   error: boolean
+
 };
 
-export default function MyInputProps({value, setValue, error}: MyInputProps): ReactElement {
+export default function MyInput({value, setValue, error}: MyInputProps): ReactElement {
   const changeValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(+e.currentTarget.value)
   };
-
-  const endStyle = error ? cls.InputError : cls.Input;
+  const endStyle = `${cls.Input} ${error ? cls.InputError : cls.Input}`;
 
   return <input
     value={value}
