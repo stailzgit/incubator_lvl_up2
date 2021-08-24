@@ -1,0 +1,25 @@
+
+.btn {
+    border-radius: 10px;
+    background-color: rgb(124, 190, 240);
+    font-size: 40px;
+    font-weight: 700;
+    padding-left: 20px;
+    padding-right: 20px;
+    outline: none;
+}
+
+.btn:active {
+    background-color: rgba(1, 3, 15, 0.755);
+    color: rgb(124, 190, 240);
+
+}
+
+.btn:disabled {
+    background-color: #3D6E7E;
+    color: rgba(1, 3, 15, 0.755);
+}
+
+.btn + .btn {
+    margin-left: 40px;
+}

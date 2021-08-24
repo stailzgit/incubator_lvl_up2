@@ -1,0 +1,56 @@
+.info {
+    max-width: 100%;
+    height: 150px;
+
+    border: 3px solid rgb(124, 190, 240);
+    border-radius: 10px;
+    background-color: #2A2C36;
+
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.info__score {
+    line-height: 70px;
+    font-size: 60px;
+    margin: 0 auto;
+    font-weight: 700;
+    color: #59E1E4;
+
+}
+
+.info__score.score_limit {
+    color: red;
+}
+
+.wrapper {
+    width: 360px;
+
+    border: 3px solid rgb(124, 190, 240);
+    border-radius: 10px;
+    text-align: center;
+
+    padding: 20px;
+}
+
+.btn__wrap {
+    max-width: 100%;
+    height: 60px;
+
+    border: 3px solid rgb(124, 190, 240);
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.MsgPressSet {
+    line-height: 25px;
+    font-size: 25px;
+    margin: 0 auto;
+    font-weight: 700;
+    color: #59E1E4;
+}
