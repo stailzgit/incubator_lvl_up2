@@ -5,6 +5,8 @@ import BtnWrap from "../BtnWrap/BtnWrap";
 import Btn from "../BtnWrap/Btn/Btn";
 
 type Props = {
+  score: number,
+  setScore: (newScore: number) => void,
   startScore: number;
   maxScore: number;
   savedSettings: boolean;
@@ -13,13 +15,15 @@ type Props = {
 
 export default function ScreenInfo(
   {
+    score,
+    setScore,
     startScore,
     maxScore,
     savedSettings,
     error
   }: Props): ReactElement {
   console.log("render ScreenInfo")
-  const [score, setScore] = useState(startScore);
+  // const [score, setScore] = useState(startScore);
 
   useEffect(() => {
     setScore(startScore)

@@ -4,6 +4,7 @@ import ScreenInfo from "./ScreenInfo/ScreenInfo";
 import BtnWrap from "./BtnWrap/BtnWrap";
 import PanelSettings from "./PanelSettings/PanelSettings";
 import {useIsMount} from './useIsMount';
+import {restoreState, saveState, StateType} from "../localStorage";
 
 type Props = {};
 
@@ -24,6 +25,11 @@ export default function Incrementor({}: Props): ReactElement {
   useEffect(() => {
     if (isMount) {
       console.log('First Render');
+      const startState = restoreState<StateType>("incrementor",
+        {maxScore: maxScore, startScore: startScore, score: score})
+      setScore(startState.score)
+      setStartScore(startState.startScore)
+      setMaxScore(startState.maxScore)
       return;
     }
 
@@ -43,13 +49,9 @@ export default function Incrementor({}: Props): ReactElement {
 
   const setSettings = () => {
     setSavedSettings(true)
+    saveState<StateType>('incrementor',
+      {maxScore: maxScore, startScore: startScore, score: score})
   }
-  // const noSaveSettings = () => {
-  //   savedSettings && setSavedSettings(false)
-  // }
-  // const yesSaveSettings = () => {
-  //   setSavedSettings(true)
-  // }
 
   return (
     <div className={cls.wrapIncrementor}>
@@ -66,6 +68,8 @@ export default function Incrementor({}: Props): ReactElement {
       />
 
       <ScreenInfo
+        score={score}
+        setScore={setScore}
         startScore={startScore}
         maxScore={maxScore}
         savedSettings={savedSettings}
