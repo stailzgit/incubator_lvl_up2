@@ -9,9 +9,14 @@ type Props = {};
 
 export default function Incrementor({}: Props): ReactElement {
 
+
+  const [score, setScore] = useState(0);
   const [startScore, setStartScore] = useState(0);
   const [maxScore, setMaxScore] = useState(5)
+
   const [savedSettings, setSavedSettings] = useState(true)
+  const [errorStart, setErrorStart] = useState(false)
+  const [errorMax, setErrorMax] = useState(false)
 
   console.log("render Incrementor")
   const isMount = useIsMount();
@@ -19,9 +24,21 @@ export default function Incrementor({}: Props): ReactElement {
   useEffect(() => {
     if (isMount) {
       console.log('First Render');
-    } else {
-      setSavedSettings(false)
+      return;
     }
+
+    setSavedSettings(false)
+
+    if (startScore >= maxScore) {
+      setErrorStart(true)
+      setErrorMax(true)
+    } else if (startScore < 0) {
+      setErrorStart(true)
+    } else {
+      setErrorStart(false)
+      setErrorMax(false)
+    }
+
   }, [startScore, maxScore])
 
   const setSettings = () => {
@@ -43,12 +60,16 @@ export default function Incrementor({}: Props): ReactElement {
         startScore={startScore}
         maxScore={maxScore}
         setSettings={setSettings}
+        savedSettings={savedSettings}
+        errorStart={errorStart}
+        errorMax={errorMax}
       />
 
       <ScreenInfo
         startScore={startScore}
         maxScore={maxScore}
         savedSettings={savedSettings}
+        error={errorStart || errorMax}
       />
     </div>
   );

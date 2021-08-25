@@ -6,6 +6,9 @@ import MyInput from "./MyInput/MyInput";
 type PanelSettingsType = {
   startScore: number,
   maxScore: number,
+  savedSettings: boolean,
+  errorStart: boolean,
+  errorMax: boolean,
   setStartScore: (value: number) => void,
   setMaxScore: (value: number) => void,
   setSettings: () => void
@@ -19,7 +22,9 @@ export default function PanelSettings(
     maxScore,
     setMaxScore,
     setSettings,
-
+    savedSettings,
+    errorStart,
+    errorMax
 
   }: PanelSettingsType): ReactElement {
   console.log("render PanelSettings")
@@ -35,7 +40,7 @@ export default function PanelSettings(
           <MyInput
             setValue={setMaxScore}
             value={maxScore}
-            error={false}
+            error={errorMax}
           />
         </div>
         <div className={cls.wrapSetValue}>
@@ -43,12 +48,16 @@ export default function PanelSettings(
           <MyInput
             setValue={setStartScore}
             value={startScore}
-            error={false}
+            error={errorStart}
           />
         </div>
       </div>
       <div className={cls.btn__wrap}>
-        <Btn onClick={setSettings} text={"set"} disabled={false}/>
+        <Btn
+          onClick={setSettings}
+          text={"set"}
+          disabled={savedSettings || errorStart || errorMax}
+        />
       </div>
 
 

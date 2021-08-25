@@ -12,7 +12,7 @@
     align-items: center;
 }
 
-.info__score {
+.infoScore {
     line-height: 70px;
     font-size: 60px;
     margin: 0 auto;
@@ -21,7 +21,7 @@
 
 }
 
-.info__score.score_limit {
+.infoScore.score_limit {
     color: red;
 }
 
@@ -47,10 +47,18 @@
     align-items: center;
 }
 
-.MsgPressSet {
+.noSavedSettings {
     line-height: 25px;
     font-size: 25px;
     margin: 0 auto;
     font-weight: 700;
     color: #59E1E4;
+}
+
+.errorScore {
+    line-height: 25px;
+    font-size: 25px;
+    margin: 0 auto;
+    font-weight: 700;
+    color: red;
 }
