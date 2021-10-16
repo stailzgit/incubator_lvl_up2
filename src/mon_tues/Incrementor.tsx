@@ -30,6 +30,7 @@ export default function Incrementor({}: Props): ReactElement {
       setScore(startState.score)
       setStartScore(startState.startScore)
       setMaxScore(startState.maxScore)
+      //setSavedSettings(true)
       return;
     }
 
