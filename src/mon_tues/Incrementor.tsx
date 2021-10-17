@@ -16,6 +16,10 @@ export default function Incrementor({}: Props): ReactElement {
   const [maxScore, setMaxScore] = useState(5)
 
   const [savedSettings, setSavedSettings] = useState(true)
+
+
+
+
   const [errorStart, setErrorStart] = useState(false)
   const [errorMax, setErrorMax] = useState(false)
 
