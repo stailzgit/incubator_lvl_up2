@@ -1,6 +1,6 @@
 import React, {ReactElement, useEffect, useState} from "react";
 import cls from "./ScreenInfo.module.css";
-import BtnWrap from "../BtnWrap/BtnWrap";
+//import BtnWrap from "../BtnWrap/BtnWrap";
 
 import Btn from "../BtnWrap/Btn/Btn";
 import {useDispatch, useSelector} from "react-redux";
@@ -29,7 +29,8 @@ export default function ScreenInfo(
   // const [score, setScore] = useState(startScore);
 
     const dispatch = useDispatch()
-    const {score, startScore, maxScore, errorStart, errorMax, isSavedSettings} = useSelector<AppRootStateType,InitialStateType>(state => state.score)
+    const {score, startScore, maxScore, errorStart, errorMax, isSavedSettings} =
+        useSelector<AppRootStateType,InitialStateType>(state => state.score)
 
 
   useEffect(() => {
@@ -44,11 +45,10 @@ export default function ScreenInfo(
       dispatch(setScoreAC(startScore))
   };
 
-  let disabledButton = errorStart || errorMax || isSavedSettings
+  let disabledButton = errorStart || errorMax || !isSavedSettings
 
   let score_style = [cls.info__score]
   let scoreText = ""
-
 
   if (errorStart || errorMax) {
     score_style.push(cls.errorScore)
@@ -72,8 +72,10 @@ export default function ScreenInfo(
       </div>
       <div className={cls.btn__wrap}>
         <Btn onClick={incHandler} text={"inc"}
+             //disabled={disabledButton}/>
              disabled={disabledButton || score === maxScore}/>
         <Btn onClick={resetHandler} text={"reset"}
+             // disabled={disabledButton}/>
              disabled={disabledButton || score === 0}/>
       </div>
     </div>

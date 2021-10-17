@@ -6,36 +6,13 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType, AppStoreType} from "../../state/store";
 import {InitialStateType, saveAC, setMaxScoreAC, setStartScoreAC} from "../../state/score-reducer";
 
-type PanelSettingsType = {
-  // startScore: number,
-  // maxScore: number,
-  // savedSettings: boolean,
-  // errorStart: boolean,
-  // errorMax: boolean,
-  // setStartScore: (value: number) => void,
-  // setMaxScore: (value: number) => void,
-  // setSettings: () => void
+type PanelSettingsType = {};
 
-};
-
-export default function PanelSettings(
-  {
-    // startScore,
-    // setStartScore,
-    // maxScore,
-    // setMaxScore,
-    // setSettings,
-    // savedSettings,
-    // errorStart,
-    // errorMax
-
-  }: PanelSettingsType): ReactElement {
+export default function PanelSettings({}: PanelSettingsType): ReactElement {
     console.log("render PanelSettings")
 
     const dispatch = useDispatch()
     const {score, startScore, maxScore, errorStart, errorMax, isSavedSettings} = useSelector<AppRootStateType,InitialStateType>(state => state.score)
-    //const {score, startScore, maxScore, errorStart, errorMax} = ...state
-    //const endStyle = error ? cls.InputError : cls.Input;
 
     const setStartScore = (newStartScore: number) => {dispatch(setStartScoreAC(newStartScore))}
     const setMaxScore   = (newMaxScore: number) => {dispatch(setMaxScoreAC(newMaxScore))}

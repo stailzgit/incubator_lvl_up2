@@ -28,9 +28,8 @@ export const scoreReducer= (state:InitialStateType = initialState, action: score
         //case "INCREMENT" : return {...state, score: state.score + 1}
         //case "RESET"     : return {...state, score: state.startScore}
         //case "NOT_SAVED" : return {...state, savedSettings: false}
-        case "SAVE"      : return {...state, isSavedSettings: true}
+        case "SAVE"      : return {...state, isSavedSettings: true, errorStart: false, errorMax: false,}
         case "INIT_WITH_LS" : {
-            const copy_state = {...state, ...action.payload}
             return {...state, ...action.payload, isSavedSettings: true, errorStart: false, errorMax: false,}
         }
         case "SET_START_SCORE" :
