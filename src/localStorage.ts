@@ -18,5 +18,4 @@ export function restoreState<T>(key: string, defaultState: T) {
 export type StateType = {
     maxScore: number
     startScore: number
-    score: number
 }

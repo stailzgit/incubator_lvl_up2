@@ -5,11 +5,11 @@ const rootReducers = combineReducers({
     score: scoreReducer,
 })
 
-export type AppStateType = ReturnType<typeof rootReducers>
+export type AppRootStateType = ReturnType<typeof rootReducers>
 
 export const store = createStore(rootReducers)
 
-type AppStoreType = typeof store
+export type AppStoreType = typeof store
 
 
 // @ts-ignore

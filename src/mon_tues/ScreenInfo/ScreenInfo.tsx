@@ -3,50 +3,57 @@ import cls from "./ScreenInfo.module.css";
 import BtnWrap from "../BtnWrap/BtnWrap";
 
 import Btn from "../BtnWrap/Btn/Btn";
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootStateType} from "../../state/store";
+import {InitialStateType, setScoreAC} from "../../state/score-reducer";
 
 type Props = {
-  score: number,
-  setScore: (newScore: number) => void,
-  startScore: number;
-  maxScore: number;
-  savedSettings: boolean;
-  error: boolean
+  // score: number,
+  // setScore: (newScore: number) => void,
+  // startScore: number;
+  // maxScore: number;
+  // savedSettings: boolean;
+  // error: boolean
 };
 
 export default function ScreenInfo(
   {
-    score,
-    setScore,
-    startScore,
-    maxScore,
-    savedSettings,
-    error
+    // score,
+    // setScore,
+    // startScore,
+    // maxScore,
+    // savedSettings,
+    // error
   }: Props): ReactElement {
   console.log("render ScreenInfo")
   // const [score, setScore] = useState(startScore);
 
+    const dispatch = useDispatch()
+    const {score, startScore, maxScore, errorStart, errorMax, isSavedSettings} = useSelector<AppRootStateType,InitialStateType>(state => state.score)
+
+
   useEffect(() => {
-    setScore(startScore)
+    dispatch(setScoreAC(startScore))
   }, [startScore])
 
   const incHandler = () => {
-    setScore(score + 1);
+      dispatch(setScoreAC(score + 1))
   };
 
   const resetHandler = () => {
-    setScore(startScore);
+      dispatch(setScoreAC(startScore))
   };
 
-  let disabledButton = error || !savedSettings
+  let disabledButton = errorStart || errorMax || isSavedSettings
 
   let score_style = [cls.info__score]
   let scoreText = ""
 
 
-  if (error) {
+  if (errorStart || errorMax) {
     score_style.push(cls.errorScore)
     scoreText = "Incorrect value"
-  } else if (!savedSettings) {
+  } else if (!isSavedSettings) {
     score_style.push(cls.noSavedSettings)
     scoreText = "enter value and press 'set'"
   } else {
