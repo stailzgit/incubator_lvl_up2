@@ -1,62 +1,49 @@
-type StateType = {
-    score: number,
-    startScore: number,
-    maxScore: number,
-    savedSettings: boolean
-}
+// enum ActionTypes {
+//     INCREMENT = "INCREMENT",
+//     RESET = "RESET",
+//     SAVE = "SAVE",
+//     NOT_SAVED= "NOT_SAVED"
+// }
 
-const initState:StateType = {
+// export type incrementAT = { type: ActionTypes.INCREMENT, }
+// export type resetAT     = { type: ActionTypes.RESET, }
+// export type notSavedAT  = { type: ActionTypes.NOT_SAVED, }
+// export type saveAT     = { type: ActionTypes.SAVE, payload: { startScore: number,maxScore: number }}
+
+const initialState = {
     score: 5,
     startScore: 5,
     maxScore: 7,
     savedSettings: true
 }
 
-export type incrementAT ={
-    type: "INCREMENT",
-}
+type InitialStateType    = typeof initialState
 
-export type resetAT ={
-    type: "RESET",
-}
 
-export type savedAT ={
-    type: "SAVE",
-    startScore: number,
-    maxScore: number
-}
-
-export type notSavedAT ={
-    type: "NOT-SAVED",
-}
-
-export type ActionsType = incrementAT | resetAT | savedAT | notSavedAT
-
-export const scoreReducer = (state = initState, action: ActionsType): typeof initState => {
+export const scoreReducer= (state:InitialStateType = initialState, action: scoreTypes): InitialStateType => {
     switch (action.type) {
-        case 'INCREMENT': { return {...state, score: state.score + 1} }
-        case 'RESET':     { return {...state, score: state.startScore} }
-        case 'NOT-SAVED': { return {...state, savedSettings: false} }
-        case 'SAVE': {
-            return {
-                ...state,
-                savedSettings: true,
-                startScore: action.startScore,
-                maxScore: action.startScore
 
-            }
-        }
+        case "INCREMENT" : return {...state, score: state.score + 1}
+        case "RESET"     : return {...state, score: state.startScore}
+        case "NOT_SAVED" : return {...state, savedSettings: false}
+        case "SAVE"      : return {...state, ...action.payload, savedSettings: true}
 
-        default: return {...state}
+        default          : return  {...state}
     }
 }
 
-export const incrementAC = ( type: "INCREMENT" ): incrementAT => ({type: "INCREMENT"})
-export const resetAC =     ( type: "RESET" ):     resetAT =>     ({type: "RESET"})
-export const notSavedAC =  ( type: "NOT-SAVED" ): notSavedAT =>  ({type: "NOT-SAVED"})
 
-export const savedAC = (type: "SAVED", startScore: number, maxScore: number
-    ): savedAT => {
-    return {type: "SAVE", startScore, maxScore}
-}
+export const incrementAC = ( ) => ({type: "INCREMENT"} as const)
+export const resetAC     = ( ) => ({type: "RESET"} as const)
+export const notSavedAC  = ( ) => ({type: "NOT_SAVED"} as const)
+export const saveAC      = (startScore: number, maxScore: number) => ( {type:  "SAVE", payload:{startScore, maxScore}} as const)
+
+export type incrementAT  = ReturnType<typeof incrementAC>
+export type resetAT      = ReturnType<typeof resetAC>
+export type notSavedAT   = ReturnType<typeof notSavedAC>
+export type saveAT       = ReturnType<typeof saveAC>
+
+
+export type scoreTypes   = incrementAT | resetAT | saveAT | notSavedAT
+
 

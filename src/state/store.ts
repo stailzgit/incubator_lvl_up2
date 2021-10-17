@@ -1,18 +1,19 @@
 import {combineReducers, createStore} from "redux";
 import {scoreReducer} from "./score-reducer";
-import {settingsReducer} from "./settings-reducer";
+//import {settingsReducer} from "./settings-reducer";
 
-const reducers = combineReducers({
+const rootReducers = combineReducers({
     score: scoreReducer,
-    settings: settingsReducer,
+    //settings: settingsReducer,
 
 })
 
-export const store = createStore(reducers)
+export type AppStateType = ReturnType<typeof rootReducers>
 
-export default store
+export const store = createStore(rootReducers)
 
-export type AppStoreType = ReturnType<typeof reducers>
+type AppStoreType = typeof store
+
 
 // @ts-ignore
 window.store = store // for dev
