@@ -30,7 +30,7 @@ export default function ScreenInfo(
 
     const dispatch = useDispatch()
     const {score, startScore, maxScore, errorStart, errorMax, isSavedSettings} =
-        useSelector<AppRootStateType,InitialStateType>(state => state.score)
+        useSelector<AppRootStateType,InitialStateType>(state => state.incrementor)
 
 
   useEffect(() => {

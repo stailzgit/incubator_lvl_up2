@@ -4,7 +4,14 @@ import Btn from "../BtnWrap/Btn/Btn";
 import MyInput from "./MyInput/MyInput";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType, AppStoreType} from "../../state/store";
-import {InitialStateType, saveAC, setMaxScoreAC, setStartScoreAC} from "../../state/score-reducer";
+import {
+    //initialStateTC,
+    InitialStateType,
+    saveAC,
+    //saveTC,
+    setMaxScoreAC,
+    setStartScoreAC
+} from "../../state/score-reducer";
 
 type PanelSettingsType = {};
 
@@ -12,11 +19,14 @@ export default function PanelSettings({}: PanelSettingsType): ReactElement {
     console.log("render PanelSettings")
 
     const dispatch = useDispatch()
-    const {score, startScore, maxScore, errorStart, errorMax, isSavedSettings} = useSelector<AppRootStateType,InitialStateType>(state => state.score)
+    const {startScore, maxScore, errorStart, errorMax, isSavedSettings} =
+        useSelector<AppRootStateType,InitialStateType>(state => state.incrementor)
 
     const setStartScore = (newStartScore: number) => {dispatch(setStartScoreAC(newStartScore))}
     const setMaxScore   = (newMaxScore: number) => {dispatch(setMaxScoreAC(newMaxScore))}
-    const setSettings  = () => {dispatch(saveAC())}
+    const setSettings  = () =>
+        {dispatch(saveAC())} //todo: use thunk creator
+        //dispatch(saveTC())
 
   return (
     <div className={cls.wrapper}>

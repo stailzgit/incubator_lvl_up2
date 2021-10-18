@@ -14,8 +14,8 @@ export function restoreState<T>(key: string, defaultState: T) {
 }
 
 // ---------------------------------------------------------------------------------------------------------------
-// пример использования:
-export type StateType = {
-    maxScore: number
-    startScore: number
-}
+// // пример использования:
+// export type StateType = {
+//     maxScore: number
+//     startScore: number
+// }
